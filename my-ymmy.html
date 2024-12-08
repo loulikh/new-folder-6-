@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yummy</title>
+  <!-- Bulma CSS -->
+
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .order-btn {
+      background-color: #ff6347;
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .order-btn:hover {
+      background-color: #e5533d;
+    }
+
+    .hero-body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-content {
+      max-width: 50%;
+      text-align: left;
+    }
+
+    .counter {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+
+      text-align: center;
+    }
+
+    .counter-item {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .number {
+      background-color: #7d8894;
+      margin-right: auto;
+    }
+
+    .top-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff6347;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      font-size: 18px;
+      cursor: pointer;
+
+      justify-content: center;
+      align-items: center;
+    }
+
+    .top-button.show {
+      display: flex;
+    }
+
+    .imagtest {
+      border-radius: 50%;
+      width: 200px;
+      height: 150px;
+
+
+    }
+
+    .swiper {
+      margin: auto;
+      margin-bottom: auto;
+      padding: auto;
+    }
+
+    .swiper-slide {
+      overflow: hidden;
+      gap: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(255, 248, 248);
+
+    }
+
+    .slide {
+      transform: translate 0.5s ease-in-out;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+
+
+
+    .stars {
+      width: 100px;
+      height: 25px;
+      position: absolute;
+      right: 70%;
+      top: 85%;
+    }
+
+    .par-slider {
+      overflow: hidden;
+      box-shadow: inset 2px 2px 2px 1px #7d8894;
+      animation: par-slid 1s 0.5 ease-in-out;
+
+    }
+
+    @keyframes par-slider {
+      0% {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateX(50%);
+      }
+
+
+      100% {
+        opacity: 1;
+        transform: translateX(50%);
+      }
+
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      transition: transform 0.5s ease;
+
+    }
+
+    @media screen and (max-width:768) {
+      .slide {
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 5px;
+
+      }
+
+    }
+
+    .form {
+      display: flex;
+      justify-content: space-between;
+
+    }
+
+    .end {
+      text-align: center;
+    }
+
+    .center-table {
+      margin: 0 auto;
+      display: flexbox;
+      justify-content: space-around;
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      height: 5%;
+    }
+
+    @media screen and(max-width:(780)) {
+
+      .footer {
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 10px 0;
+      }
+    }
+
+    .contact-form {
+
+      display: inline-block;
+      width: 80%;
+      margin: 0 50px;
+    }
+
+    .event {
+      width: 400px;
+      height: 400px;
+
+    }
+
+    .table-container {
+      background-color: rgb(225, 76, 103);
+      width: 650px;
+      opacity: 1;
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <!-- Scroll to Top Button -->
+    <button class="top-button"> <a id="scrollTopToBtn" href="#top"><i class="fas fa-arrow-up"></i></a></button>
+
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item is-size-3 has-text-weight-bold has-text-danger" href="#">YUMMY</a>
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="#">Home</a>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Menu</a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item" href="#">Breakfast</a>
+                <a class="navbar-item" href="#">Lunch</a>
+                <a class="navbar-item" href="#">Dinner</a>
+                <hr class="navbar-divider">
+                <a class="navbar-item" href="#">Desserts</a>
+              </div>
+            </div>
+            <a class="navbar-item" href="#">About</a>
+            <a class="navbar-item" href="#">Contact</a>
+            <a class="navbar-item" href="#">Chefs</a>
+          </div>
+          <div class="navbar-end">
+            <a href="#" class="order-btn">Order Now</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <section class="hero is-medium is-dark">
+    <div class="hero-body">
+      <div class="container is-flex is-align-items-center is-justify-content-space-between">
+        <!-- Left Content -->
+        <div class="hero-content">
+
+
+          <h1 class="title is-size-1 has-text-weight-bold has-text-danger">
+            Enjoy Your Healthy Delicious Food
+          </h1>
+          <p class="subtitle is-size-4 has-text-primary">
+            We are a team of talented designers making websites.
+          </p>
+          <a href="#" class="button is-danger is-medium mt-4">Order Now</a>
+        </div>
+
+        <!-- Right Image -->
+
+        <div data-aos="fade-up" data-aos-duration="2000">
+
+          <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500-rabitate">
+
+            <div class="hero-image">
+              <figure class="image">
+                <img src="./img/hero-img.png" alt="Delicious food hero image" style="max-width: 75%; height: auto;">
+              </figure>
+            </div>
+          </div>
+        </div>
+  </section>
+
+  <section class="section">
+    <div class="container has-text-centered">
+      <h1 class="title">About Us</h1>
+      <p class="subtitle has-text-primary">Learn more about us</p>
+      <div class="columns is-vcentered">
+        <div class="column">
+          <figure class="image">
+            <img src="./img/about.jpg" alt="About us image">
+          </figure>
+        </div>
+        <div class="column">
+          <h2 class="title has-text-primary">Welcome to YUMMY</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida,
+            nulla nunc varius lectus, nec rutrum justo nibh eu lectus.
+
+          </p>
+          <br>
+          <h3 class="subtitle has-text-primary">Luxury View</h3>
+          <p>
+            Curabitur accumsan turpis pharetra <strong>augue tincidunt</strong> blandit. Quisque condimentum maximus mi,
+            sit amet commodo arcu rutrum id.
+          </p>
+          <ul>
+            <li>View See </li>
+            <li>View Montaine</li>
+            <li>View Natural</li>
+            <li>Sky</li>
+            <li>Game</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <button class="table-container">
+        <h2 class="title is-4">Book a Table</h2>
+        <p><a href="tel:+0114252568">+009 52 252 568</a></p>
+      </button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container has-text-centered">
+      <h1 class="title">Our Menu</h1>
+      <p>Check our <span class="has-text-danger">Yummy Menu</span></p>
+
+      <!-- Menu Tabs -->
+      <div class="tabs is-centered" class="::is-hoverable">
+        <ul>
+          <li><a href="#">Starters</a></li>
+          <li><a href="#">Breakfast</a></li>
+          <li><a href="#">Lunch</a></li>
+          <li><a href="#">Dinner</a></li>
+        </ul>
+      </div>
+
+      <!-- Swiper Section -->
+      <div class="swiper mt-4">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="./img/menu/menu-item-1.png" alt="Menu item 1" class="image">
+            <div>
+              <h3>EOS LUIBUUSDAM</h3>
+              Lorem ipsum dolor,NERADA <br>
+              <p class="has-background-danger">$12.95</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./img/menu/menu-item-2.png" alt="Menu item 2" class="image">
+            <div>
+              <h3>KHRAM LUIBUUSDAM</h3>
+              Lorem ipsum dolor,NERADA <br>
+              <p class="has-background-danger">$12.95</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./img/menu/menu-item-3.png" alt="Menu item 3" class="image">
+            <div>
+              <h3>JOHN LUIBUUSDAM</h3>
+              Lorem ipsum dolor,NERADA <br>
+              <p class="has-background-danger">$12.95</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./img/menu/menu-item-4.png" alt="Menu item 4" class="image">
+            <div>
+              <h3>MARK USDAMATE</h3>
+              Lorem ipsum dolor,NERADA <br>
+              <p class="has-background-danger">$12.95</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./img/menu/menu-item-5.png" alt="Menu item 5" class="image">
+            <div>
+              <h3>EOS LUIBUUSDAM</h3>
+              Lorem ipsum dolor,NERADA <br>
+              <p class="has-background-danger">$12.95</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <img src="./img/menu/menu-item-6.png" alt="Menu item 6" class="image">
+            <div>
+              <h3>EOS LUIBUUSDAM</h3>
+              Lorem ipsum dolor,NERADA <br>
+              <p class="has-background-danger">$12.95</p>
+            </div>
+          </div>
+
+
+        </div>
+        
+        <div class="swiper-pagination"></div> 
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- start container-box -->
+  <section class="container-box is-flex" class="is-justify-content-space-between ">
+
+    <div data-aos="zoom-in-down">
+      <div class="box has-background-danger has-text-white">
+        <div class="icon"><i class="fab fa-github" has-background-light></i></div>
+        <br>
+        <strong class=" has-text-white">WHY CHOOSE YUMMY </strong>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ea mollitia quisquam in dolor! Quas
+          odit
+          tenetur illo deserunt ea itaque culpa aspernatur. Velit, blanditiis praesentium officia tempora ab magni.</p>
+        <button class="button is-dark is-light is-rounded ml-5">Learn More </button>
+      </div>
+    </div>
+    <br>
+    <div data-aos="zoom-in-down">
+
+      <div class="box">
+        <nav class="level is-mobile">
+          <a class="level-item">
+            <span class="icon is-medium"><i class="fas fa-heart"></i></span>
+          </a>
+        </nav>
+        <br>
+        <h1><b> Corporis voluptates officia eiusmode</b></h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ea mollitia quisquam in dolor! Quas
+          odit
+          tenetur illo deserunt ea itaque culpa aspernatur. Velit, blanditiis praesentium officia tempora ab magni.</p>
+      </div>
+    </div>
+    <div data-aos="zoom-in-down">
+      <div class="box">
+        <nav class="level is-mobile">
+
+          <a class="level-item">
+            <span class="icon is-medium"><i class="fas fa-heart"></i></span>
+          </a>
+        </nav>
+        <br>
+        <h1><b>Ullamco laboris ladore lore pan</b></h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ea mollitia quisquam in dolor! Quas
+          odit
+          tenetur illo deserunt ea itaque culpa aspernatur. Velit, blanditiis praesentium officia tempora ab magni.</p>
+      </div>
+    </div>
+    <div data-aos="zoom-in-down">
+
+      <div class="box">
+
+        <nav class="level is-mobile">
+
+          <a class="level-item">
+            <span class="icon is-medium"><i class="fas fa-heart"></i></span>
+          </a>
+        </nav>
+        <h1><b>Labore conseguature incidid dore</b></h1>
+        <br>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ea mollitia quisquam in dolor! Quas
+          odit
+          tenetur illo deserunt ea itaque culpa aspernatur. Velit, blanditiis praesentium officia tempora ab magni.</p>
+      </div>
+    </div>
+    <br>
+  </section>
+  <br>
+  <!-- end container-box -->
+
+
+  <section class="container-counter">
+    <figure>
+
+      <img src="./img/about-2.jpg" alt="counter" class="img-fluid"
+        style="width:100%; height:50%;  filter: brightness(30%);">
+      <div class="number">
+        <span class="num" data-val="200" has-text-centered>000</span>
+        <span class="text">client</span>
+
+        <span class="num" data-val="150">000</span>
+        <span class="text">projects</span>
+
+        <span class="num" data-val="200">000</span>
+        <span class="text">Hour of support</span>
+
+        <span class="num" data-val="70">000</span>
+        <span class="text">workers</span>
+      </div>
+    </figure>
+
+  </section>
+  <br>
+  <br>
+
+  <section class="testimonials">
+    <div class="container has-text-centered">
+      <h1 class="title">WHAT ARE THEY <span class=" has-text-danger">ABOUT US</span> </h1>
+
+    </div>
+
+    <div class="swiper mt-2 background is-light">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Hic ullam, vel pariatur nulla possimus
+          <br> aspernatur repudiandae obcaecati consequatur placeat cumque <br>quis beatae ea dolorem corrupti.Facilis
+          obcaecati
+          velit sint vel.
+
+          <h4 class="has-text-primary">SOUL GOODMAN <br>
+            CED&FOUNDER</h4>
+
+          <img src="./img/testimonials/testimonials-1.jpg" alt="testimonials" class="imagtest">
+          <img src="../stars.jpg" alt="stars" class="stars">
+        </div>
+        <div class="swiper-slide">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Hic ullam, vel pariatur nulla possimus
+          <br> aspernatur repudiandae obcaecati consequatur placeat cumque <br>quis beatae ea dolorem corrupti.Facilis
+          obcaecati
+          velit sint vel.
+          <br>
+          <br>
+          <h4 class="has-text-primary"> SARA WILSSON <br>
+            DISINER</h4>
+
+          <img src="./img/testimonials/testimonials-2.jpg" alt="testimonials" class="imagtest">
+          <img src="../stars.jpg" alt="stars" class="stars">
+        </div>
+        <div class="swiper-slide">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Hic ullam, vel pariatur nulla possimus
+          <br> aspernatur repudiandae obcaecati consequatur placeat cumque <br>quis beatae ea dolorem corrupti.Facilis
+          obcaecati
+          velit sint vel.
+          <br>
+          <h4 class="has-text-primary">JEANA KARLES <br>
+            STORE OWNER</h4>
+
+          <img src="./img/testimonials/testimonials-3.jpg" alt="testimonials" class="imagtest">
+          <img src="../stars.jpg" alt="stars" class="stars">
+        </div>
+        <div class="swiper-slide">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Hic ullam, vel pariatur nulla possimus
+          <br> aspernatur repudiandae obcaecati consequatur placeat cumque <br>quis beatae ea dolorem corrupti.Facilis
+          obcaecati
+          velit sint vel.
+          <br>
+
+
+          <h4 class="has-text-primary">
+            JEANA KARLES <br>
+            STORE OWNER
+          </h4>
+          <img src="./img/testimonials/testimonials-4.jpg" alt="testimonials" class="imagtest">
+
+          <img src="../stars.jpg" alt="stars" class="stars">
+
+
+        </div>
+      </div>
+      <br>
+
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+
+
+  </section>
+  <br>
+  <br>
+
+
+
+
+  <section>
+
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="event is-size-4 has-background has-text-white"
+          style="background-image: url(./img/events/event-1.png); background-size: cover; width: 100;">
+          <p class="is-size-6">CUSTOM PARLES</p>
+          <num class="has-background-danger">$99</num>
+          <P class="is-size-7">
+            QUO CORPONS VOLUPTAS EA AD. consectetur <br>
+            inventore sapiente ipsume voluptas eos omris facere. <br>
+            nulla expedita ques.
+          </P>
+
+        </div>
+        <div class="event is-size-4 has-background has-text-white"
+          style="background-image: url(./img/events/event-2.png); background-size: cover; width: 100;">
+          <p class="is-size-6">CUSTOM PARLES</p>
+          <num class="has-background-danger">$110</num>
+          <P class="is-size-7">
+            QUO CORPONS VOLUPTAS EA AD. consectetur <br>
+            inventore sapiente ipsume voluptas eos omris facere. <br>
+            nulla expedita ques.
+          </P>
+
+        </div>
+        <div class="event is-size-4 has-background has-text-white"
+          style="background-image: url(./img/events/event-3.png); background-size: cover; width: 100;">
+          <p class="is-size-6">CUSTOM PARLES</p>
+          <num class="has-background-danger">$75</num>
+          <P class="is-size-7">
+            QUO CORPONS VOLUPTAS EA AD. consectetur <br>
+            inventore sapiente ipsume voluptas eos omris facere. <br>
+            nulla expedita ques.
+          </P>
+
+        </div>
+        <slide class="event is-size-4 has-background has-text-white"
+          style="background-image: url(./img/events/event-4.png); background-size: cover; width: 100;">
+          <p class="is-size-6">CUSTOM PARLES</p>
+          <num class="has-background-danger">$95</num>
+          <P class="is-size-7">
+            QUO CORPONS VOLUPTAS EA AD. consectetur <br>
+            inventore sapiente ipsume voluptas eos omris facere. <br>
+            nulla expedita ques.
+          </P>
+
+      </div>
+      <br>
+
+    </div>
+    </div>
+    </div>
+    </div>
+  </section>
+  <br>
+  <br>
+  <br>
+
+
+  <section class="shefs">
+
+    <h1 class="title has-text-centered">OUR <span class="has-text-danger">PROFEETIONAL CHEFS</span></h1>
+    <div class="container is-flex">
+
+      <div class="par-slider">
+
+        <figure> <img src="./img/chefs/chefs-1.jpg" alt="shef" class="shefs"></figure>
+
+        <div>
+          <h2>ESSAM MOYT</h2>
+          <h5>Master Chef</h5>
+          <p>
+            Valite aut quia fugit et. Dolorum ea volupate vel tempore teneture ipsa quae aut.Ipsum exercitationem
+            iure minima coprporis et volupate.
+          </p>
+        </div>
+      </div>
+
+      <div class="par-slider">
+        <figure> <img src="./img/chefs/chefs-3.jpg" alt="shef"></figure>
+
+        <div>
+          <h2>ESSAM MOYT</h2>
+          <h5>Master Chef</h5>
+          <p>
+            Valite aut quia fugit et. Dolorum ea volupate vel tempore teneture ipsa quae aut.Ipsum exercitationem
+            iure minima coprporis et volupate.
+          </p>
+        </div>
+
+      </div>
+      <div class="par-slider">
+        <figure> <img src="./img/chefs/chefs-3.jpg" alt="shef"></figure>
+
+        <div>
+          <h2>ESSAM MOYT</h2>
+          <h5>Master Chef</h5>
+          <p>
+            Valite aut quia fugit et. Dolorum ea volupate vel tempore teneture ipsa quae aut.Ipsum exercitationem
+            iure minima coprporis et volupate.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+  <br>
+  <br>
+
+  <div>
+
+
+    <h1 class="title has-text-centered whight is-6"> BOOK A TABLE</h1>
+    <h1 class="title has-text-centered">BOOK YOUR <span class="has-text-danger">STAY WITH US</span></h1>
+  </div>
+
+  <section class="section contact-form is-flex">
+
+
+    <div class="container">
+
+      <img src="./img/reservation.jpg" alt="Reserved" width="250" height="350">
+      <form>
+        <div class="field">
+          <div class="field">
+
+            <label class="label">Name</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Your Name">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input class="input" type="email" placeholder="Your Email">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Message</label>
+            <div class="control">
+              <textarea class="textarea" placeholder="Your Message"></textarea>
+            </div>
+          </div>
+          <div class="control">
+            <button class="button is-danger">Submit</button>
+          </div>
+      </form>
+    </div>
+    </div>
+  </section>
+
+  <br>
+
+  <section>
+
+    <!-- map>>>> -->
+
+
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d193535.78165816228!2d-73.7518013!3d40.7180916!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2sjp!4v1733135387971!5m2!1sar!2sjp"
+      width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy=""></iframe>
+
+
+
+
+
+
+  </section>
+
+  <br>
+  <br>
+  <footer class="end">
+    <div class=" is-flex">
+      <table class="is-dark center-table">
+
+        <tr class="has-text-danger">
+          <td>📞Address</td> <br>
+          <td>👥Contact</td>
+          <td>⏳Oppenning Houres</td>
+        </tr> <br>
+        <tr>
+          <td>A108 Adam street</td> <br>
+          <td>📱phone:+15502223999</td>
+          <td>⌚Mon-Sat:11AM-23PM</td>
+
+        </tr>
+        <tr>
+          <td>🔎New York,NY </td> <br>
+          <td>Email:info@example.com</td>
+          <td>🚫 Sunday.Closed</td>
+        </tr>
+        <br>
+        <tr>
+
+          <td>
+            <a href="https:\\facebook.com"></a>
+          </td>
+          <br>
+        </tr>
+      </table>
+    </div>
+
+    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a> <a href="#" class="social-icon"><i
+        class="fab fa-instagram"></i></a> <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+
+    <p>&copy; 2024 Yummy. All Rights Reserved.</p>
+  </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    AOS.init();
+
+
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: { el: '.swiper-pagination' },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    });  
+  </script>
+
+
+
+  <script>
+    let valueDisplays = document.querySelectorAll(".num");
+    let interval = 5000;
+    valueDisplays.forEach(valueDisplay => {
+      let startValue = 0;
+      let endValue = parseInt(valueDisplay.getAttribute("data-val"));
+
+      let duration = Math.floor(interval / endValue);
+      let counter = setInterval(function () {
+        startValue += 1;
+        valueDisplay.textContent = startValue;
+        if (startValue == endValue) {
+          clearInterval(counter);
+        }
+
+      }, duration);
+
+
+    }); 
+  </script>
+
+  <script>
+    letspan.onclick = function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+
+    let span = document.querySelector(".uo");
+    window.onscroll = function () {
+      console.log(this.scrollY);
+      if (this.scroll >= 1000) {
+        span.classList.add("show");
+      }
+      else {
+        span.classList.remove("show");
+      }
+      this.scrollY >= 1000 ? span.classList.add("show") : span.classList.remove("show");
+
+    };
+
+    var Swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    })
+
+
+    </script>
+</body>
